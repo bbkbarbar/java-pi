@@ -29,7 +29,7 @@ public class ClientApp {
 	}
 
 	private void start(String[] args) {
-		
+	
 		this.log = new LogManager("Client", LogManager.Level.INFO){
 
 			@Override
@@ -49,7 +49,16 @@ public class ClientApp {
 			
 		};
 		
-		myClient = new Client(DEFAULT_SERVER_HOSTNAME, DEFAULT_SERVER_PORT) {
+		int portArg = DEFAULT_SERVER_PORT;
+		if(args.length>1){
+			try{
+				portArg = Integer.valueOf(args[1].trim());
+			}catch(Exception e){
+				portArg = DEFAULT_SERVER_PORT;
+			}
+		}
+		
+		myClient = new Client(DEFAULT_SERVER_HOSTNAME, portArg) {
 			
 			@Override
 			protected void showOutput(String text) {

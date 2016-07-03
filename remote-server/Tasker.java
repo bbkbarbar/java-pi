@@ -17,9 +17,9 @@ public class Tasker {
 		
 		System.out.println("args.length: " + args.length);
 		int portArg = DEFAULT_PORT;
-		if(args.length>0){
+		if(args.length>1){
 			try{
-				portArg = Integer.valueOf(args[0].trim());
+				portArg = Integer.valueOf(args[1].trim());
 			}catch(Exception e){
 				portArg = DEFAULT_PORT;
 			}
