@@ -85,7 +85,11 @@ public class ClientApp {
 			System.out.println("Sent: " + "dateTime");
 		}
 		
-		if(myClient.sendMessage(new RGBMessage("setAll", 255,17,127))){
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {}
+		
+		if(myClient.sendMessage(new RGBMessage("setAll", 255,127,10))){
 			System.out.println("Sent: " + "Color");
 		}
 		
