@@ -1,4 +1,3 @@
-package hu.barbar.comm.util;
 
 import java.io.Serializable;
 

@@ -1,11 +1,9 @@
-package hu.barbar.comm;
 
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.HashMap;
 
-import hu.barbar.comm.util.Msg;
 
 public abstract class MultiThreadServer extends Thread {
 

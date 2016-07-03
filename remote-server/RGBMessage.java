@@ -1,4 +1,3 @@
-package hu.barbar.comm.util;
 
 /**
  * 

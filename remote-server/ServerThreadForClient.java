@@ -1,13 +1,8 @@
-package hu.barbar.comm;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
-
-import hu.barbar.comm.util.Commands;
-import hu.barbar.comm.util.Msg;
-import hu.barbar.tasker.Tasker;
 
 public class ServerThreadForClient extends Thread {
 

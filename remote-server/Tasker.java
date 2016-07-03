@@ -1,11 +1,7 @@
-package hu.barbar.tasker;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import hu.barbar.comm.MultiThreadServer;
-import hu.barbar.comm.util.Msg;
-import hu.barbar.comm.util.RGBMessage;
 
 public class Tasker {
 	

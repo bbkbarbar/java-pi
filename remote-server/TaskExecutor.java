@@ -1,8 +1,5 @@
-package hu.barbar.tasker;
 
 import java.io.IOException;
-
-import hu.barbar.tasker.util.Env;
 
 public class TaskExecutor {
 

@@ -1,4 +1,3 @@
-package hu.barbar.tasker.util;
 
 import java.io.File;
 import java.util.Map;
