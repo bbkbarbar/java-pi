@@ -76,7 +76,6 @@ public class ClientApp {
 		
 		if(myClient.waitWhileIsInitialized()){
 			System.out.println("CLIENT IS INITILAIZED");
-		}
 		// wait for answer..
 		try {
 				Thread.sleep(1000);
