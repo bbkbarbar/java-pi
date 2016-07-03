@@ -6,7 +6,8 @@ public class ClientApp {
 	private static final boolean DEBUG_MODE = false;
 
 	public static String ver = "0.1";
-	public static final String DEFAULT_SERVER_HOSTNAME = (DEBUG_MODE ? "localhost" : "192.168.0.101");
+	public static final String DEFAULT_SERVER_HOSTNAME = (DEBUG_MODE ? "localhost" : "barbarhome.ddns.net");
+	//public static final String DEFAULT_SERVER_HOSTNAME = (DEBUG_MODE ? "localhost" : "192.168.0.101");
 	public static final int DEFAULT_SERVER_PORT = (DEBUG_MODE ? 13003 : 10713);
 
 	public String SERVER_HOSTNAME = DEFAULT_SERVER_HOSTNAME;
@@ -49,16 +50,7 @@ public class ClientApp {
 			
 		};
 		
-		int portArg = DEFAULT_SERVER_PORT;
-		if(args.length>1){
-			try{
-				portArg = Integer.valueOf(args[1].trim());
-			}catch(Exception e){
-				portArg = DEFAULT_SERVER_PORT;
-			}
-		}
-		
-		myClient = new Client(DEFAULT_SERVER_HOSTNAME, portArg) {
+		myClient = new Client(DEFAULT_SERVER_HOSTNAME, DEFAULT_SERVER_PORT) {
 			
 			@Override
 			protected void showOutput(String text) {
@@ -87,8 +79,10 @@ public class ClientApp {
 		}
 		// wait for answer..
 		try {
-			Thread.sleep(200);
-		} catch (InterruptedException e) {} /**/
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+				System.out.println("InterruptedException in ClientApp");
+			} /**/
 		
 		if(myClient.sendMessage(new Msg("dateTime", Msg.Types.COMMAND))){
 			System.out.println("Sent: " + "dateTime");
@@ -98,8 +92,13 @@ public class ClientApp {
 			Thread.sleep(1000);
 		} catch (InterruptedException e) {}
 		
-		if(myClient.sendMessage(new RGBMessage("setAll", 255,127,10))){
+			System.out.println("waiting...");
+			
+			if(myClient.sendMessage(new RGBMessage("setAll", 255,17,127))){
 			System.out.println("Sent: " + "Color");
+		}
+		
+			System.out.println("Color sent...");
 		}
 		
 		
