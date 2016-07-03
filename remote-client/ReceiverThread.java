@@ -2,8 +2,6 @@
 import java.io.IOException;
 import java.io.ObjectInputStream;
 
-import hu.barbar.comm.util.Msg;
-import hu.barbar.util.LogManager;
 
 public abstract class ReceiverThread extends Thread {
 

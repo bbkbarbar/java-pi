@@ -2,8 +2,6 @@
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 
-import hu.barbar.comm.util.Msg;
-import hu.barbar.util.LogManager;
 
 public class SenderThread extends Thread {
 
