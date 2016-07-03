@@ -7,20 +7,32 @@ public class Tasker {
 	
 	public static final boolean DEBUG_MODE = true;
 
+	public static final int DEFAULT_PORT = 10713;
+
 	protected static Tasker me = null;
 	
 	private MultiThreadServer myServer = null;
 	
 	public static void main(String[] args) {
 		
+		System.out.println("args.length: " + args.length);
+		int portArg = DEFAULT_PORT;
+		if(args.length>0){
+			try{
+				portArg = Integer.valueOf(args[0].trim());
+			}catch(Exception e){
+				portArg = DEFAULT_PORT;
+			}
+		}
+		
 		me = new Tasker();
-		me.start();
+		me.start(portArg);
 		
 	}
 	
-	private void start(){
+	private void start(int port){
 		System.out.println("Start server..");
-		myServer = new MultiThreadServer(){
+		myServer = new MultiThreadServer(port){
 			@Override
 			protected boolean handleInput(Msg msg, int clientId) {
 				return Tasker.me.processCommand(msg, clientId);

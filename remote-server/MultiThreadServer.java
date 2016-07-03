@@ -19,9 +19,10 @@ public abstract class MultiThreadServer extends Thread {
 	private int port = DEFAULT_PORT_VALUE;
 	
 	
-	public MultiThreadServer() {
+	public MultiThreadServer(int port) {
 		clients = new HashMap<>();
 		nextClientId = 0;
+		this.port = port;
 	}
 	
 	
