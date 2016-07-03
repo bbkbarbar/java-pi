@@ -35,7 +35,7 @@ public abstract class MultiThreadServer extends Thread {
 			showOutput("IOException catched while try initialize ServerSocket(" + port + ")");
 		}
 		
-		System.out.println("Server wait for clients..");
+		System.out.println("Server wait for clients on port: " + port + "..");
 		while (SERVER_ACCEPT_NEW_CONNECTIONS) {
 			try{
 				client = myServerSocket.accept();
