@@ -76,24 +76,20 @@ public class ClientApp {
 		
 		if(myClient.waitWhileIsInitialized()){
 			System.out.println("CLIENT IS INITILAIZED");
+
+		/*
 		// wait for answer..
 		try {
-				Thread.sleep(1000);
-			} catch (InterruptedException e) {
-				System.out.println("InterruptedException in ClientApp");
-			} /**/
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			System.out.println("InterruptedException in ClientApp");
+		} /**/
 		
 		if(myClient.sendMessage(new Msg("dateTime", Msg.Types.COMMAND))){
 			System.out.println("Sent: " + "dateTime");
 		}
 		
-		try {
-			Thread.sleep(1000);
-		} catch (InterruptedException e) {}
-		
-			System.out.println("waiting...");
-			
-			if(myClient.sendMessage(new RGBMessage("setAll", 255,17,127))){
+		if(myClient.sendMessage(new RGBMessage("setAll", 255,17,127))){
 			System.out.println("Sent: " + "Color");
 		}
 		
