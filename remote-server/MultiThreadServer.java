@@ -3,6 +3,8 @@ import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 
 
 public abstract class MultiThreadServer extends Thread {
@@ -99,5 +101,17 @@ public abstract class MultiThreadServer extends Thread {
 	protected abstract boolean handleInput(Msg msg, int clientId);
 
 	protected abstract void onClientExit(int clientId);
+
+
+	public String getClientList() {
+		String result = "";
+		Iterator it = clients.entrySet().iterator();
+	    while (it.hasNext()) {
+	        Map.Entry pair = (Map.Entry)it.next();
+	        result += pair.getKey() + ", ";
+	        it.remove(); // avoids a ConcurrentModificationException
+	    }
+		return result;
+	}
 
 }

@@ -61,6 +61,11 @@ public class Tasker {
 				String response = TaskExecutor.readTemp("not_used_yet");
 				myServer.sendToClient(new Msg("Temp: " + response, Msg.Types.PLAIN_TEXT), clientId);
 			}
+			else
+			if( msg.getContent().startsWith("getClientList")){
+				String response = myServer.getClientList();
+				myServer.sendToClient(new Msg("Clients: " + response, Msg.Types.PLAIN_TEXT), clientId);
+			}
 		}else
 
 		if(msg.getType() == Msg.Types.RGB_COMMAND){
