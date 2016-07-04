@@ -62,11 +62,11 @@ public class Tasker {
 				myServer.sendToClient(new Msg("Temp: " + response, Msg.Types.PLAIN_TEXT), clientId);
 			}
 			else
-			if( msg.getContent().startsWith("getClientList")){
-				System.out.println("Client want to get clientList");
+			if( msg.getContent().contains("getClientList")){
+				System.out.println("Client wants to get current client list.");
 				String response = myServer.getClientList();
 				myServer.sendToClient(new Msg("Clients: " + response, Msg.Types.PLAIN_TEXT), clientId);
-				System.out.println("===================\nResponse: " + response);
+				System.out.println("ClientList sent to client");
 			}
 		}else
 
