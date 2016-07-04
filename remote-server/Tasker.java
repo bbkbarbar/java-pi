@@ -56,15 +56,13 @@ public class Tasker {
 				String dateStr = sdf.format(now);
 				myServer.sendToClient(new Msg(dateStr, Msg.Types.PLAIN_TEXT), clientId);
 			}
-		}else
-
-		if(msg.getType() == Msg.Types.COMMAND){
+			else
 			if( msg.getContent().startsWith("readTemp")){
 				String response = TaskExecutor.readTemp("not_used_yet");
 				myServer.sendToClient(new Msg("Temp: " + response, Msg.Types.PLAIN_TEXT), clientId);
 			}
 		}else
-			
+
 		if(msg.getType() == Msg.Types.RGB_COMMAND){
 			RGBMessage rgbMsg = (RGBMessage)msg;
 			System.out.println("Color receied from client [" + clientId + "]: " + rgbMsg.toString());

@@ -59,8 +59,13 @@ public class ClientApp {
 			
 			@Override
 			protected void handleRecievedMessage(Msg message) {
-				System.out.println("Message received from SERVER: " + message.getContent());
-				System.out.println(message.toString());
+				if(message.getContent().startsWith("Temp: ")){
+					String[] result = message.getContent().split(" ");
+					System.out.println("Temp: " + result[result.length-1] + "C");
+				}else{
+					System.out.println("\nMessage received from SERVER: " + message.getContent());
+					System.out.println(message.toString());
+				}
 			}
 			
 			@Override
@@ -77,25 +82,40 @@ public class ClientApp {
 		if(myClient.waitWhileIsInitialized()){
 			System.out.println("CLIENT IS INITILAIZED");
 
-		/*
-		// wait for answer..
+			
+			if(myClient.sendMessage(new Msg("dateTime", Msg.Types.COMMAND))){
+				System.out.println("Sent: " + "dateTime");
+			}
+			
+			if(myClient.sendMessage(new RGBMessage("setAll", 255,127,7))){
+				System.out.println("Sent: " + "Color");
+			}
+
+			// wait a little ..
+			try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+				System.out.println("InterruptedException in ClientApp");
+			} /**/
+
+			if(myClient.sendMessage(new Msg("readTemp", Msg.Types.COMMAND))){
+				System.out.println("Sent: " + "readTemp");
+			}
+			
+			if(myClient.sendMessage(new RGBMessage("setAll", 0,0,0))){
+				System.out.println("Sent: " + "Color");
+			}
+
+		}
+		
+
+		// wait before disconnect..
 		try {
-			Thread.sleep(1000);
+			Thread.sleep(4000);
 		} catch (InterruptedException e) {
 			System.out.println("InterruptedException in ClientApp");
 		} /**/
-		
-		if(myClient.sendMessage(new Msg("dateTime", Msg.Types.COMMAND))){
-			System.out.println("Sent: " + "dateTime");
-		}
-		
-		if(myClient.sendMessage(new RGBMessage("setAll", 255,17,127))){
-			System.out.println("Sent: " + "Color");
-		}
-		
-			System.out.println("Color sent...");
-		}
-		
+
 		
 		myClient.disconnect();
 

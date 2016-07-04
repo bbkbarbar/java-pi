@@ -12,6 +12,7 @@ public class TaskExecutor {
 		if(Env.runningOnTargetDevice()){
 			try {
 				Process p = Runtime.getRuntime().exec(cmd);
+				System.out.println("Task execution (readTemp) completed");
 				BufferedReader in = new BufferedReader(new InputStreamReader(p.getInputStream()));
 				response = in.readLine();
 			} catch (IOException e) {
