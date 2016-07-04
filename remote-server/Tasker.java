@@ -66,6 +66,7 @@ public class Tasker {
 				System.out.println("Client want to get clientList");
 				String response = myServer.getClientList();
 				myServer.sendToClient(new Msg("Clients: " + response, Msg.Types.PLAIN_TEXT), clientId);
+				System.out.println("===================\nResponse: " + response);
 			}
 		}else
 
