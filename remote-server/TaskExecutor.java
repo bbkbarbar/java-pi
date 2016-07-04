@@ -1,7 +1,30 @@
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.io.IOException;
 
 public class TaskExecutor {
+
+	public static String readTemp(String param){
+
+		String response = "_PROBLEM_";
+		String cmd = "python /home/pi/python/live/getTemp.py -s -1";
+		if(Env.runningOnTargetDevice()){
+			try {
+				Process p = Runtime.getRuntime().exec(cmd);
+				BufferedReader in = new BufferedReader(new InputStreamReader(p.getInputStream()));
+				response = in.readLine();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}else{
+			System.out.println("<<RUN PYTHON SCRIPT>>\n" + cmd);
+			response = "2\t12.234\t26.027";
+		}
+		
+		return response;
+	}
 
 	public static void setColor(int red, int green, int blue) {
 		
