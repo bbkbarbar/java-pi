@@ -71,7 +71,7 @@ public class RGBMessage extends Msg {
 		;
 	}
 	
-	public boolean equals(Msg otherInstance){
+	public boolean equals(RGBMessage otherInstance){
 		if(this.type != otherInstance.getType()){
 			return false;
 		}
