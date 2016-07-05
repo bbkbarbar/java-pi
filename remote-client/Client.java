@@ -119,8 +119,8 @@ public abstract class Client extends Thread {
 		 *  Create and start Sender thread
 		 */
 		sender = new SenderThread(objOut, log);
-		//if(log != null)
-		//	log.d("Sender created.");
+		if(log != null)
+			log.d("Sender created.");
 
         //sender.setDaemon(true);
         sender.start();
