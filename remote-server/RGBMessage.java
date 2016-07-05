@@ -30,6 +30,46 @@ public class RGBMessage extends Msg {
 		this.colorB = Integer.valueOf(blue);
 		
 	}
+
+	public static RGBMessage createInstance(String line){
+		int resolvedType = Msg.Types.RGB_COMMAND;
+		int resolvedR = 0;
+		int resolvedG = 0;
+		int resolvedB = 0;
+		String resolvedContent = "";
+
+		String[] parts = line.split(Msg.ARGUMENT_SEPARATOR);
+		for(int i=0; i<parts.lenght; i++){
+			String[] data = parts[i].split("=");
+			
+			if(data[0].equals("content")){
+				resolvedContent = data[1];
+			}
+			else
+			if(data[0].equals("r")){
+				resolvedR = data[1];
+			}
+			else
+			if(data[0].equals("g")){
+				resolvedG = data[1];
+			}
+			else
+			if(data[0].equals("b")){
+				resolvedB = data[1];
+			}
+
+		}
+		return new RGBMessage(resolvedContent, resolvedR, resolvedG, resolvedB);
+	}
+
+	public String getInstanceAsLine(){
+		return getParameterLine("content", this.content) + Msg.ARGUMENT_SEPARATOR
+			 + getParameterLine("type", this.type) + Msg.ARGUMENT_SEPARATOR
+			 + getParameterLine("r", this.colorR) + Msg.ARGUMENT_SEPARATOR
+			 + getParameterLine("g", this.colorG) + Msg.ARGUMENT_SEPARATOR
+			 + getParameterLine("b", this.colorB)
+		;
+	}
 	
 	private static int cribTo8bit(int val){
 		if(val < 0)

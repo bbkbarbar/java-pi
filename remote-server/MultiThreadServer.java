@@ -102,6 +102,13 @@ public abstract class MultiThreadServer extends Thread {
 
 	protected abstract void onClientExit(int clientId);
 
+	public int getActiveClientCount(){
+		if(clients == null){
+			return -1;
+		}else{
+			return clients.size();
+		}
+	}
 
 	public String getClientList() {
 		String result = "";
