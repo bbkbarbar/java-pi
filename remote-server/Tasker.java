@@ -49,18 +49,28 @@ public class Tasker {
 	
 	protected boolean processCommand(Msg msg, int clientId){
 
-		if(msg.getType() == Msg.Types.COMMAND){
+		if(msg.getType() == Msg.Types.REQUEST){
 			if( msg.getContent().startsWith(Commands.GET_DATE)){
 				SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd HH:mm:ss");
 				Date now = new Date();
 				String dateStr = sdf.format(now);
 				myServer.sendToClient(new Msg(dateStr, Msg.Types.PLAIN_TEXT), clientId);
 			}
+
 			else
+
 			if( msg.getContent().startsWith(Commands.GET_TEMP)){
 				String response = TaskExecutor.readTemp("not_used_yet");
 				myServer.sendToClient(new Msg("Temp: " + response, Msg.Types.PLAIN_TEXT), clientId);
 			}
+
+			else
+
+			if( msg.getContent().startsWith(Commands.GET_CLIENT_COUNT)){
+				String response = Integer.toString(myServer.getActiveClientCount());
+				myServer.sendToClient(new Msg("Client count: " + response, Msg.Types.PLAIN_TEXT), clientId);
+			}
+
 			/*
 			else
 			if( msg.getContent().contains("getClientList")){

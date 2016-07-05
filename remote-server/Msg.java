@@ -15,7 +15,8 @@ public class Msg implements Serializable{
 		public static final int UNDEFINED = 0,
 								COMMAND = 1,
 								PLAIN_TEXT = 2, 
-								RGB_COMMAND = 3;
+								RGB_COMMAND = 3,
+								REQUEST = 4;
 		
 		public static String getTypeText(int type){
 			switch (type) {
@@ -25,6 +26,8 @@ public class Msg implements Serializable{
 				return "Plain text";
 			case Types.RGB_COMMAND:
 				return "RGB command";
+			case Types.REQUEST:
+				return "Request";
 
 			default:
 				return "Undefined";
