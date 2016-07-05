@@ -50,24 +50,25 @@ public class Tasker {
 	protected boolean processCommand(Msg msg, int clientId){
 
 		if(msg.getType() == Msg.Types.COMMAND){
-			if( msg.getContent().startsWith("dateTime")){
+			if( msg.getContent().startsWith(Commands.GET_DATE)){
 				SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd HH:mm:ss");
 				Date now = new Date();
 				String dateStr = sdf.format(now);
 				myServer.sendToClient(new Msg(dateStr, Msg.Types.PLAIN_TEXT), clientId);
 			}
 			else
-			if( msg.getContent().startsWith("readTemp")){
+			if( msg.getContent().startsWith(Commands.GET_TEMP)){
 				String response = TaskExecutor.readTemp("not_used_yet");
 				myServer.sendToClient(new Msg("Temp: " + response, Msg.Types.PLAIN_TEXT), clientId);
 			}
+			/*
 			else
 			if( msg.getContent().contains("getClientList")){
 				System.out.println("Client wants to get current client list.");
 				String response = myServer.getClientList();
 				myServer.sendToClient(new Msg("Clients: " + response, Msg.Types.PLAIN_TEXT), clientId);
 				System.out.println("ClientList sent to client:\n" + response);
-			}
+			}/**/
 		}else
 
 		if(msg.getType() == Msg.Types.RGB_COMMAND){

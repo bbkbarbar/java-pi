@@ -5,10 +5,12 @@ import java.io.IOException;
 
 public class TaskExecutor {
 
+	public static final String SCRIPT_PATH = "/home/pi/python/live/";
+
 	public static String readTemp(String param){
 
 		String response = "_PROBLEM_";
-		String cmd = "python /home/pi/python/live/getTemp.py -s -1";
+		String cmd = "python " + SCRIPT_PATH + "getTemp.py -s -1";
 		if(Env.runningOnTargetDevice()){
 			try {
 				Process p = Runtime.getRuntime().exec(cmd);
@@ -31,11 +33,11 @@ public class TaskExecutor {
 		
 		//TODO NOW
 		
-		int redIn16bit   = forceInRange(red   * 16, 0, 4095);
-		int greenIn16bit = forceInRange(green * 16, 0, 4095);
-		int blueIn16bit  = forceInRange(blue  * 16, 0, 4095);
+		int redIn16bit   = keepValueInRange(red   * 16, 0, 4095);
+		int greenIn16bit = keepValueInRange(green * 16, 0, 4095);
+		int blueIn16bit  = keepValueInRange(blue  * 16, 0, 4095);
 		
-		String cmd = "python /home/pi/python/live/rgb.py"
+		String cmd = "python " + SCRIPT_PATH + "rgb.py"
 				+ " -r " + redIn16bit
 				+ " -g " + greenIn16bit
 				+ " -b " + blueIn16bit;
@@ -44,8 +46,7 @@ public class TaskExecutor {
 			try {
 				Process p = Runtime.getRuntime().exec(cmd);
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				System.out.println("Can not execute \"setColor\" script.");
 			}
 		}else{
 			System.out.println("<<RUN PYTHON SCRIPT>>\n" + cmd);
@@ -53,7 +54,7 @@ public class TaskExecutor {
 		
 	}
 	
-	private static int forceInRange(int value, int min, int max){
+	private static int keepValueInRange(int value, int min, int max){
 		if(value > max){
 			return max;
 		}
