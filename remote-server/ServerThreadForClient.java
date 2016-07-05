@@ -3,6 +3,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.nio.channels.Channels;
 
 public class ServerThreadForClient extends Thread {
 
@@ -28,9 +29,11 @@ public class ServerThreadForClient extends Thread {
 	public void run() {
 		
 		try {
+			Channel channel = new Channel( client.getInputStream() );
 
 			//in = new BufferedReader(new InputStreamReader(client.getInputStream()));
-			objIn = new ObjectInputStream(client.getInputStream());
+			//objIn = new ObjectInputStream(client.getInputStream());
+			objIn = new ObjectInputStream(Channels.newInputStream(channel));
 			//out = new PrintWriter(new PrintStream(client.getOutputStream()), true);
 			objOut = new ObjectOutputStream(client.getOutputStream());
 			
