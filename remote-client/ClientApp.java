@@ -1,4 +1,7 @@
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+
 public class ClientApp {
 
 	private static ClientApp me = null;
@@ -31,7 +34,7 @@ public class ClientApp {
 
 	private void start(String[] args) {
 	
-		this.log = new LogManager("Client", LogManager.Level.INFO){
+		this.log = new LogManager("Client ::", LogManager.Level.WARN){
 
 			@Override
 			public void showInfo(String text) {
@@ -77,10 +80,9 @@ public class ClientApp {
 		myClient.setLogManager(log);
 		myClient.start();
 		
-		System.out.println("Clint:: clientThread started");
-		
 		if(myClient.waitWhileIsInitialized()){
-			System.out.println("CLIENT IS INITILAIZED");
+			if(log != null)
+				log.i("initilaized..");
 
 			
 			if(myClient.sendMessage(new Msg("dateTime", Msg.Types.COMMAND))){
@@ -98,28 +100,51 @@ public class ClientApp {
 				System.out.println("InterruptedException in ClientApp");
 			} /**/
 
-			if(myClient.sendMessage(new Msg("readTemp", Msg.Types.COMMAND))){
-				System.out.println("Sent: " + "readTemp");
-			}
-
+			/*
+			// DIFFERENCE HERE
 			System.out.println("\n\nGet clientList from server");
 			if(myClient.sendMessage(new Msg("getClientList", Msg.Types.COMMAND))){
 				System.out.println("Sent: " + "getClientList");
 			}
+
+			// wait a little ..
+			try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+				System.out.println("InterruptedException in ClientApp");
+			} /**/
+
+			if(myClient.sendMessage(new Msg("readTemp", Msg.Types.COMMAND))){
+				System.out.println("Sent: " + "readTemp");
+			}
+
+			// wait a little ..
+			try {
+				Thread.sleep(5000);
+			} catch (InterruptedException e) {
+				System.out.println("InterruptedException in ClientApp");
+			} /**/
+			
 			
 		}
 		
 
-		// wait before disconnect..
-		try {
-			Thread.sleep(5000);
-		} catch (InterruptedException e) {
-			System.out.println("InterruptedException in ClientApp");
-		} /**/
+		//readLine();
 
 		
 		myClient.disconnect();
 
+	}
+
+	private String readLine(){
+		String s = "";
+		try {
+			BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+	        s = br.readLine();
+	    }catch(Exception e){
+	    	s = "Exception cought.";
+	    }
+        return s;
 	}
 	
 	public void showOutput(String text){
