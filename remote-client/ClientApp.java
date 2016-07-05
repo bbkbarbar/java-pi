@@ -8,7 +8,7 @@ public class ClientApp {
 	public static String ver = "0.1";
 	public static final String DEFAULT_SERVER_HOSTNAME = (DEBUG_MODE ? "localhost" : "barbarhome.ddns.net");
 	//public static final String DEFAULT_SERVER_HOSTNAME = (DEBUG_MODE ? "localhost" : "192.168.0.101");
-	public static final int DEFAULT_SERVER_PORT = (DEBUG_MODE ? 13003 : 10713);
+	public static final int DEFAULT_SERVER_PORT = (DEBUG_MODE ? 13003 : 10714);
 
 	public String SERVER_HOSTNAME = DEFAULT_SERVER_HOSTNAME;
 	public int SERVER_PORT = -1;
@@ -87,7 +87,7 @@ public class ClientApp {
 				System.out.println("Sent: " + "dateTime");
 			}
 			
-			if(myClient.sendMessage(new RGBMessage("setAll", 255,127,7))){
+			if(myClient.sendMessage(new RGBMessage("setAll", 255,127,0))){
 				System.out.println("Sent: " + "Color");
 			}
 
@@ -101,17 +101,18 @@ public class ClientApp {
 			if(myClient.sendMessage(new Msg("readTemp", Msg.Types.COMMAND))){
 				System.out.println("Sent: " + "readTemp");
 			}
-			
-			if(myClient.sendMessage(new RGBMessage("setAll", 0,0,0))){
-				System.out.println("Sent: " + "Color");
-			}
 
+			System.out.println("\n\nGet clientList from server");
+			if(myClient.sendMessage(new Msg("getClientList", Msg.Types.COMMAND))){
+				System.out.println("Sent: " + "getClientList");
+			}
+			
 		}
 		
 
 		// wait before disconnect..
 		try {
-			Thread.sleep(4000);
+			Thread.sleep(5000);
 		} catch (InterruptedException e) {
 			System.out.println("InterruptedException in ClientApp");
 		} /**/
