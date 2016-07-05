@@ -71,6 +71,21 @@ public class RGBMessage extends Msg {
 		;
 	}
 	
+	public boolean equals(Msg otherInstance){
+		if(this.type != otherInstance.getType()){
+			return false;
+		}
+		if(!this.content.equals(otherInstance.getContent())){
+			return false;
+		}
+		if( (this.getRed()   != otherInstance.getRed())   ||
+			(this.getGreen() != otherInstance.getGreen()) ||
+			(this.getBlue()  != otherInstance.getBlue())  ){
+			return false;
+		}
+		return true;
+	}
+
 	private static int cribTo8bit(int val){
 		if(val < 0)
 			return 0;

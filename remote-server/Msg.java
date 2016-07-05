@@ -81,6 +81,18 @@ public class Msg implements Serializable{
 		;
 	}
 	
+
+	public boolean equals(Msg otherInstance){
+		if(this.type != otherInstance.getType()){
+			return false;
+		}
+		if(!this.content.equals(otherInstance.getContent())){
+			return false;
+		}
+		return true;
+	}
+
+
 	
 	public int getType(){
 		return this.type;

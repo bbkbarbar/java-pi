@@ -84,8 +84,8 @@ public class ClientApp {
 			if(log != null)
 				log.i("initilaized..");
 
-			
-			if(myClient.sendMessage(new Msg(Commands.GET_DATE, Msg.Types.REQUEST))){
+			Msg msg = new Msg(Commands.GET_DATE, Msg.Types.REQUEST);
+			if(myClient.sendMessage(msg)){
 				System.out.println("Sent: " + Commands.GET_DATE); 
 			}
 			readLine();
