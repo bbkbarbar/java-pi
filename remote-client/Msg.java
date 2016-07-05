@@ -38,9 +38,9 @@ public class Msg implements Serializable{
 
 	protected static final String ARGUMENT_SEPARATOR = ", ";
 
-	private int type = Types.UNDEFINED; 
+	protected int type = Types.UNDEFINED; 
 
-	private String content = null;
+	protected String content = null;
 	
 
 	
@@ -59,10 +59,10 @@ public class Msg implements Serializable{
 		String resolvedContent = "";
 
 		String[] parts = line.split(Msg.ARGUMENT_SEPARATOR);
-		for(int i=0; i<parts.lenght; i++){
+		for(int i=0; i < parts.length; i++){
 			String[] data = parts[i].split("=");
 			if(data[0].equals("type")){
-				resolvedType = data[1];
+				resolvedType = Integer.valueOf(data[1]);
 			}else
 			if(data[0].equals("content")){
 				resolvedContent = data[1];
@@ -77,7 +77,7 @@ public class Msg implements Serializable{
 
 	public String getInstanceAsLine(){
 		return getParameterLine("content", this.content) + Msg.ARGUMENT_SEPARATOR
-			 + getParameterLine("type", this.type)
+			 + getParameterLine("type", this.type + "")
 		;
 	}
 	

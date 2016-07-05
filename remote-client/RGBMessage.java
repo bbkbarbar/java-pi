@@ -39,7 +39,7 @@ public class RGBMessage extends Msg {
 		String resolvedContent = "";
 
 		String[] parts = line.split(Msg.ARGUMENT_SEPARATOR);
-		for(int i=0; i<parts.lenght; i++){
+		for(int i=0; i<parts.length; i++){
 			String[] data = parts[i].split("=");
 			
 			if(data[0].equals("content")){
@@ -47,15 +47,15 @@ public class RGBMessage extends Msg {
 			}
 			else
 			if(data[0].equals("r")){
-				resolvedR = data[1];
+				resolvedR = Integer.valueOf(data[1]);
 			}
 			else
 			if(data[0].equals("g")){
-				resolvedG = data[1];
+				resolvedG = Integer.valueOf(data[1]);
 			}
 			else
 			if(data[0].equals("b")){
-				resolvedB = data[1];
+				resolvedB = Integer.valueOf(data[1]);
 			}
 
 		}
@@ -63,11 +63,11 @@ public class RGBMessage extends Msg {
 	}
 
 	public String getInstanceAsLine(){
-		return getParameterLine("content", this.content) + Msg.ARGUMENT_SEPARATOR
-			 + getParameterLine("type", this.type) + Msg.ARGUMENT_SEPARATOR
-			 + getParameterLine("r", this.colorR) + Msg.ARGUMENT_SEPARATOR
-			 + getParameterLine("g", this.colorG) + Msg.ARGUMENT_SEPARATOR
-			 + getParameterLine("b", this.colorB)
+		return getParameterLine("content", content) + Msg.ARGUMENT_SEPARATOR
+			 + getParameterLine("type", this.type + "") + Msg.ARGUMENT_SEPARATOR
+			 + getParameterLine("r", this.colorR + "") + Msg.ARGUMENT_SEPARATOR
+			 + getParameterLine("g", this.colorG + "") + Msg.ARGUMENT_SEPARATOR
+			 + getParameterLine("b", this.colorB + "")
 		;
 	}
 	
