@@ -30,7 +30,7 @@ public class RGBMessage extends Msg {
 		this.colorB = Integer.valueOf(blue);
 		
 	}
-
+	
 	public static RGBMessage createInstance(String line){
 		int resolvedType = Msg.Types.RGB_COMMAND;
 		int resolvedR = 0;

@@ -2,6 +2,7 @@
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
+
 public class ClientApp {
 
 	private static ClientApp me = null;
@@ -33,7 +34,7 @@ public class ClientApp {
 	}
 
 	private void start(String[] args) {
-	
+		
 		this.log = new LogManager("Client ::", LogManager.Level.WARN){
 
 			@Override
@@ -67,8 +68,8 @@ public class ClientApp {
 					System.out.println("\nTemp: " + result[result.length-1] + "C");
 				}else{
 					System.out.println("\nMessage received from SERVER: " + message.getContent());
-					System.out.println(message.toString());
-				}
+				System.out.println(message.toString());
+			}
 			}
 			
 			@Override
@@ -81,9 +82,9 @@ public class ClientApp {
 		myClient.start();
 		
 		if(myClient.waitWhileIsInitialized()){
-			if(log != null)
-				log.i("initilaized..");
+			System.out.println("CLIENT IS INITILAIZED");
 
+			
 			Msg msg = new Msg(Commands.GET_DATE, Msg.Types.REQUEST);
 			if(myClient.sendMessage(msg)){
 				System.out.println("Sent: " + Commands.GET_DATE); 
@@ -106,7 +107,7 @@ public class ClientApp {
 			} catch (InterruptedException e) {
 				System.out.println("InterruptedException in ClientApp");
 			} /**/
-
+			
 
 			if(myClient.sendMessage(new Msg(Commands.GET_TEMP, Msg.Types.REQUEST))){
 				System.out.println("Sent: " + Commands.GET_TEMP);
@@ -116,11 +117,11 @@ public class ClientApp {
 			// wait a little ..
 			try {
 				Thread.sleep(5000);
-			} catch (InterruptedException e) {
-				System.out.println("InterruptedException in ClientApp");
-			} /**/
-			
-			
+		} catch (InterruptedException e) {
+			System.out.println("InterruptedException in ClientApp");
+		} /**/
+		
+		
 		}
 		
 
@@ -130,7 +131,7 @@ public class ClientApp {
 		myClient.disconnect();
 
 	}
-
+	
 	private String readLine(){
 		String s = "";
 		try {

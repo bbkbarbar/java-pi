@@ -42,7 +42,7 @@ public class Msg implements Serializable{
 
 	protected String content = null;
 	
-
+	
 	
 	public Msg(String text){
 		this.content = text;
@@ -53,7 +53,7 @@ public class Msg implements Serializable{
 		this.content = text;
 		this.type = type;
 	}
-
+	
 	public static Msg createInstance(String line){
 		int resolvedType = Types.UNDEFINED;
 		String resolvedContent = "";
