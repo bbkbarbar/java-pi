@@ -58,6 +58,9 @@ public class Tasker {
 			System.out.println("Color receied from client [" + clientId + "]: " + rgbMsg.toString());
 			TaskExecutor.setColor(rgbMsg.getRed(), rgbMsg.getGreen(), rgbMsg.getBlue());
 			myServer.sendToClient(new Msg("New color accepted.", Msg.Types.PLAIN_TEXT), clientId);
+			return true;
+		}else{
+			return false;
 		}
 	}
 
