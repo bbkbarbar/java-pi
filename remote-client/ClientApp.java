@@ -96,8 +96,8 @@ public class ClientApp {
 			}
 			readLine();
 			
-			/*
-			if(myClient.sendMessage(new RGBMessage("setAll", 0,0,0))){
+			
+			if(myClient.sendMessage(new RGBMessage("setAll", 240,50,0))){
 				System.out.println("Sent: " + "Color");
 			}/**/
 
