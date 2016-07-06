@@ -43,7 +43,9 @@ public class RGBMessage extends Msg {
 			String[] data = parts[i].split("=");
 			
 			if(data[0].equals("content")){
-				resolvedContent = data[1];
+				try{
+					resolvedContent = data[1];
+				}catch(Exception doesNotMatterException){}
 			}
 			else
 			if(data[0].equals("r")){

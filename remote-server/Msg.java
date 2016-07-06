@@ -65,7 +65,9 @@ public class Msg implements Serializable{
 				resolvedType = Integer.valueOf(data[1]);
 			}else
 			if(data[0].equals("content")){
-				resolvedContent = data[1];
+				try{
+					resolvedContent = data[1];
+				}catch(Exception doesNotMatterException){}
 			}
 		}
 		return new Msg(resolvedContent, resolvedType);
