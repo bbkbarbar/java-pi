@@ -55,8 +55,10 @@ public class ServerThreadForClient extends Thread {
 						myServer.onClientExit(myId);
 					}else{
 						if(receivedMsg.getType()==Msg.Types.RGB_COMMAND){
+							System.out.println("Hangle RGBMessage");
 							myServer.handleInput(RGBMessage.createInstance(line), myId);
 						}else{
+							System.out.println("Hangle Message");
 							myServer.handleInput(receivedMsg, myId);
 						}
 					}
