@@ -125,7 +125,7 @@ public class ClientApp {
 		}
 		
 
-		readLine();
+		//readLine();
 
 		
 		myClient.disconnect();
