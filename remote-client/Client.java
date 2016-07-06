@@ -133,7 +133,7 @@ public abstract class Client extends Thread {
 		if(log != null)
 			log.d("Sender created.");
 
-        //sender.setDaemon(true);
+        sender.setDaemon(true);
         sender.start();
  
 

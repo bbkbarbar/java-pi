@@ -113,10 +113,10 @@ public class ClientApp {
 				System.out.println("Sent: " + Commands.GET_TEMP);
 			}
 
-			/*
+			
 			// wait a little ..
 			try {
-				Thread.sleep(5000);
+				Thread.sleep(3000);
 		} catch (InterruptedException e) {
 			System.out.println("InterruptedException in ClientApp");
 		} /**/
@@ -125,7 +125,7 @@ public class ClientApp {
 		}
 		
 
-		readLine();
+		//readLine();
 
 		
 		myClient.disconnect();
