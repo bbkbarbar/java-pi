@@ -39,6 +39,11 @@ public class Tasker {
 			}
 
 			@Override
+			protected boolean handleRGBInput(RGBMessage msg, int clientId) {
+				return Tasker.me.processRGBCommand(msg, clientId);
+			}
+
+			@Override
 			protected void onClientExit(int clientId) {
 				System.out.println("Client disconnected [" + clientId + "]");
 			}
@@ -47,6 +52,15 @@ public class Tasker {
 		System.out.println("Server started.");
 	}
 	
+	protected boolean processRGBCommand(Msg msg, int clientId){
+		if(msg.getType() == Msg.Types.RGB_COMMAND){
+			RGBMessage rgbMsg = (RGBMessage)msg;
+			System.out.println("Color receied from client [" + clientId + "]: " + rgbMsg.toString());
+			TaskExecutor.setColor(rgbMsg.getRed(), rgbMsg.getGreen(), rgbMsg.getBlue());
+			myServer.sendToClient(new Msg("New color accepted.", Msg.Types.PLAIN_TEXT), clientId);
+		}
+	}
+
 	protected boolean processCommand(Msg msg, int clientId){
 
 		if(msg.getType() == Msg.Types.REQUEST){
@@ -81,12 +95,6 @@ public class Tasker {
 			}/**/
 		}else
 
-		if(msg.getType() == Msg.Types.RGB_COMMAND){
-			RGBMessage rgbMsg = (RGBMessage)msg;
-			System.out.println("Color receied from client [" + clientId + "]: " + rgbMsg.toString());
-			TaskExecutor.setColor(rgbMsg.getRed(), rgbMsg.getGreen(), rgbMsg.getBlue());
-			myServer.sendToClient(new Msg("New color accepted.", Msg.Types.PLAIN_TEXT), clientId);
-		}else
 		{
 			System.out.println("Message receied from client [" + clientId + "]: " + msg.toString());
 		}

@@ -99,6 +99,8 @@ public abstract class MultiThreadServer extends Thread {
 	protected void showOutput(String text){}
 	
 	protected abstract boolean handleInput(Msg msg, int clientId);
+	
+	protected abstract boolean handleRGBInput(RGBMessage msg, int clientId);
 
 	protected abstract void onClientExit(int clientId);
 
