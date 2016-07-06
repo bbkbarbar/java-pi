@@ -54,7 +54,11 @@ public class ServerThreadForClient extends Thread {
 					if(receivedMsg.getType()==Msg.Types.COMMAND && receivedMsg.getContent().equals(Commands.CLIENT_EXIT)){
 						myServer.onClientExit(myId);
 					}else{
-						myServer.handleInput(receivedMsg, myId);
+						if(receivedMsg.getType()==Msg.Types.RGB_COMMAND){
+							myServer.handleInput(RGBMessage.createInstance(line), myId);
+						}else{
+							myServer.handleInput(receivedMsg, myId);
+						}
 					}
 				}
 			}catch(NullPointerException npe){
