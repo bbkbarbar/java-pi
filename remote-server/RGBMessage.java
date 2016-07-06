@@ -30,7 +30,7 @@ public class RGBMessage extends Msg {
 		this.colorB = Integer.valueOf(blue);
 		
 	}
-
+	
 	public static RGBMessage createInstance(String line){
 		int resolvedType = Msg.Types.RGB_COMMAND;
 		int resolvedR = 0;
@@ -63,12 +63,12 @@ public class RGBMessage extends Msg {
 	}
 
 	public String getInstanceAsLine(){
-		return getParameterLine("content", content) + Msg.ARGUMENT_SEPARATOR
+		return removeLBs(getParameterLine("content", content) + Msg.ARGUMENT_SEPARATOR
 			 + getParameterLine("type", this.type + "") + Msg.ARGUMENT_SEPARATOR
 			 + getParameterLine("r", this.colorR + "") + Msg.ARGUMENT_SEPARATOR
 			 + getParameterLine("g", this.colorG + "") + Msg.ARGUMENT_SEPARATOR
 			 + getParameterLine("b", this.colorB + "")
-		;
+		);
 	}
 	
 	public boolean equals(RGBMessage otherInstance){

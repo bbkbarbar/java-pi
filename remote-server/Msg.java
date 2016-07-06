@@ -42,7 +42,7 @@ public class Msg implements Serializable{
 
 	protected String content = null;
 	
-
+	
 	
 	public Msg(String text){
 		this.content = text;
@@ -53,7 +53,7 @@ public class Msg implements Serializable{
 		this.content = text;
 		this.type = type;
 	}
-
+	
 	public static Msg createInstance(String line){
 		int resolvedType = Types.UNDEFINED;
 		String resolvedContent = "";
@@ -71,12 +71,16 @@ public class Msg implements Serializable{
 		return new Msg(resolvedContent, resolvedType);
 	}
 
+	protected String removeLBs(String s){
+		return s.replace("\n", " ");
+	}
+	
 	protected String getParameterLine(String item, String value){
 		return item + "=" + value;
 	}
 
 	public String getInstanceAsLine(){
-		return getParameterLine("content", this.content) + Msg.ARGUMENT_SEPARATOR
+		return getParameterLine("content", removeLBs(this.content)) + Msg.ARGUMENT_SEPARATOR
 			 + getParameterLine("type", this.type + "")
 		;
 	}
